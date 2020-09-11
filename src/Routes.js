@@ -1,10 +1,11 @@
 import React from "react";
-import { BrowerRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Main from "./pages/Main/Main";
 
 const Routes = () => {
   return (
     <Router>
-      <Route path="" component={} />
+      <Route path="/" component={Main} />
     </Router>
   );
 };
