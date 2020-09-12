@@ -2,22 +2,24 @@ import React from "react";
 import styled from "styled-components";
 import DogImg from "../DogImg/DogImg";
 
-const ImgList = ({ data }) => {
+const ImgList = ({ Imgdata }) => {
   return (
-    <ImgListComponent>
-      {data &&
-        data.map((img, idx) => {
-          console.log("hi");
+    <>
+      <ImgListComponent>
+        {Imgdata.map((img, idx) => {
           return <DogImg key={idx} img={img} />;
         })}
-    </ImgListComponent>
+      </ImgListComponent>
+    </>
   );
 };
 
 export default ImgList;
 
 const ImgListComponent = styled.ul`
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
 `;

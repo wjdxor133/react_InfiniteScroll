@@ -4,7 +4,7 @@ import styled from "styled-components";
 const DogImg = ({ img }) => {
   return (
     <DogImgComponent>
-      <ImgBox src={`${img}`} alt=" " />
+      <ImgBox src={`${img}`} alt={`${img}`} />
     </DogImgComponent>
   );
 };
@@ -12,11 +12,12 @@ const DogImg = ({ img }) => {
 export default DogImg;
 
 const DogImgComponent = styled.li`
-  width: 100%;
-  height: 100%;
+  width: 240px;
+  height: 240px;
+  padding: 1em;
 `;
 
 const ImgBox = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 100%;
+  height: 100%;
 `;

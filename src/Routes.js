@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Main from "./pages/Main/Main";
+import Scroll from "./pages/Scroll/Scroll";
 
 const Routes = () => {
   return (
     <Router>
-      <Route path="/" component={Main} />
+      <Route path="/" component={Scroll} />
     </Router>
   );
 };
