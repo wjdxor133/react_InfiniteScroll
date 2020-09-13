@@ -20,6 +20,5 @@ const ImgListComponent = styled.ul`
   width: 80%;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
 `;
