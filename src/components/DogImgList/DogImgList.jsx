@@ -4,7 +4,7 @@ import DogImg from "../DogImg/DogImg";
 
 const ImgList = ({ Imgdata, loading }) => {
   return (
-    <ImgListComponent loading={loading}>
+    <ImgListComponent loading={`${loading}`}>
       {Imgdata.map((img, idx) => {
         return <DogImg key={idx} img={img} />;
       })}

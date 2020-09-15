@@ -24,8 +24,14 @@ const Scroll = () => {
       })
       .catch((error) => {
         console.log("error", error);
-        setLoading(false);
       });
+  };
+
+  // 엔터 입력 함수
+  const handleKeyPress = (e) => {
+    if (e.charCode === 13) {
+      handleSearch();
+    }
   };
 
   // 무한 스크롤 이벤트
@@ -48,13 +54,13 @@ const Scroll = () => {
             type="text"
             placeholder="입력해주세요."
             onChange={(e) => setDogCategory(e.target.value)}
-            onKeyPress={handleSearch}
+            onKeyPress={handleKeyPress}
           ></SearchInput>
           <SearchButton onClick={handleSearch}>검색</SearchButton>
         </SearchBox>
       </Header>
-      {loading && <Loading />}
-      <DogImgList loading={loading} Imgdata={imgList} />
+      {loading ? <Loading /> : null}
+      <DogImgList loading={`${loading}`} Imgdata={imgList} />
     </ScrollPage>
   );
 };
