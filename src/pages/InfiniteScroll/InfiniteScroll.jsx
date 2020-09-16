@@ -9,7 +9,7 @@ const InfiniteScroll = () => {
   const [imgList, setImgList] = useState([]); // 화면에 보여질 강아지 이미지 데이터
   const [dogCategory, setDogCategory] = useState(""); // 검색 할 강아지 종류
   const [loading, setLoading] = useState(false); // 화면 로딩 여부
-  const [errorMessage, setErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false); // 에러 메시지 여부
 
   // 강아지 이미지 데이터 검색
   const handleSearch = async () => {
@@ -49,8 +49,6 @@ const InfiniteScroll = () => {
 
   useEffect(() => {}, [dogCategory, imgList, loading]);
 
-  console.log("data", data);
-  console.log("imgList", imgList);
   return (
     <ScrollPage onScroll={handleScroll}>
       <Header>
