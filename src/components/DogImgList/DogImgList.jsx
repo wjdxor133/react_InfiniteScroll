@@ -17,6 +17,7 @@ export default ImgList;
 const ImgListComponent = styled.ul`
   width: 80%;
   margin: 0 auto;
-  display: ${(props) => (props.loading ? "none" : "flex")};
+  display: flex;
+  display: ${(props) => (props.loading === "true" ? "none" : "flex")};
   flex-wrap: wrap;
 `;

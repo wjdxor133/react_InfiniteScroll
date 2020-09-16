@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Scroll from "../pages/Scroll/Scroll";
+import InfiniteScroll from "../pages/InfiniteScroll/InfiniteScroll";
 
 const Routes = () => {
   return (
     <Router>
-      <Route path="/" component={Scroll} />
+      <Route path="/" component={InfiniteScroll} />
     </Router>
   );
 };
