@@ -9,12 +9,13 @@ const InfiniteScroll = () => {
   const [imgList, setImgList] = useState([]); // 화면에 보여질 강아지 이미지 데이터
   const [dogCategory, setDogCategory] = useState(""); // 검색 할 강아지 종류
   const [loading, setLoading] = useState(false); // 화면 로딩 여부
-  const [errorMessage, setErrorMessage] = useState(false); // 에러 메시지 여부
+  const [errorChecked, setErrorChecked] = useState(false); // 에러 메시지 여부
+  const [errorMessage, setErrorMessage] = useState(""); // status에 따라 표시되는 오류 메시지
 
   // 강아지 이미지 데이터 검색
   const handleSearch = async () => {
     setLoading(true);
-    setErrorMessage(false);
+    setErrorChecked(false);
     await axios
       .get(`https://dog.ceo/api/breed/${dogCategory}/images`)
       .then((res) => {
@@ -25,9 +26,13 @@ const InfiniteScroll = () => {
         }, 2000);
       })
       .catch((error) => {
-        console.log("error", error);
-        setErrorMessage(true);
-        setLoading(false);
+        if (error.response.status === 400 || 404) {
+          setErrorChecked(true);
+          setLoading(false);
+          setErrorMessage("영소문자로 개 종류를 다시 입력해주세요.");
+        } else if (error.response.status === 500 || 503) {
+          setErrorMessage("일시적인 오류가 발생했습니다.");
+        }
       });
   };
 
@@ -42,7 +47,8 @@ const InfiniteScroll = () => {
   const handleScroll = (event) => {
     const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
 
-    if (scrollHeight - scrollHeight / 3.5 - scrollTop < clientHeight) {
+    // 스크롤 4분의 1 지점에서 이벤트 발생
+    if (scrollHeight - scrollHeight / 4 - scrollTop < clientHeight) {
       setImgList(data.slice(0, imgList.length + 10));
     }
   };
@@ -56,16 +62,16 @@ const InfiniteScroll = () => {
           <SearchInput
             value={dogCategory}
             type="text"
-            placeholder="입력해주세요."
-            onChange={(e) => setDogCategory(e.target.value)}
+            placeholder="영소문자로 개 종류를 입력하시오."
+            onChange={(e) => setDogCategory(e.target.value.toLowerCase())}
             onKeyPress={handleKeyPress}
           ></SearchInput>
           <SearchButton onClick={handleSearch}>검색</SearchButton>
         </SearchBox>
       </Header>
       {loading ? <Loading /> : null}
-      {errorMessage ? (
-        <ErrorMessageText>에러가 발생했습니다.</ErrorMessageText>
+      {errorChecked ? (
+        <ErrorMessageText>{errorMessage}</ErrorMessageText>
       ) : (
         <DogImgList loading={`${loading}`} Imgdata={imgList} />
       )}
