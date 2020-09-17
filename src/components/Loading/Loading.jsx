@@ -17,7 +17,6 @@ export default Loading;
 
 const LoadingComponent = styled.div`
   width: 100%;
-  margin-top: 0.5em;
 `;
 
 const LoadingTextBox = styled.div`

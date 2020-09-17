@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { ImSearch } from "react-icons/im";
 import DogImgList from "../../components/DogImgList/DogImgList";
 import Loading from "../../components/Loading/Loading";
 
@@ -29,7 +30,7 @@ const InfiniteScroll = () => {
         if (error.response.status === 400 || 404) {
           setErrorChecked(true);
           setLoading(false);
-          setErrorMessage("영소문자로 개 종류를 다시 입력해주세요.");
+          setErrorMessage("개 종류를 영소문자로 다시 입력해주세요.");
         } else if (error.response.status === 500 || 503) {
           setErrorMessage("일시적인 오류가 발생했습니다.");
         }
@@ -47,7 +48,7 @@ const InfiniteScroll = () => {
   const handleScroll = (event) => {
     const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
 
-    // 스크롤 4분의 1 지점에서 이벤트 발생
+    // 스크롤 4분의 3 지점에서 이벤트 발생
     if (scrollHeight - scrollHeight / 4 - scrollTop < clientHeight) {
       setImgList(data.slice(0, imgList.length + 10));
     }
@@ -62,11 +63,13 @@ const InfiniteScroll = () => {
           <SearchInput
             value={dogCategory}
             type="text"
-            placeholder="영소문자로 개 종류를 입력하시오."
+            placeholder="개 종류를 영소문자로 입력하시오."
             onChange={(e) => setDogCategory(e.target.value.toLowerCase())}
             onKeyPress={handleKeyPress}
           ></SearchInput>
-          <SearchButton onClick={handleSearch}>검색</SearchButton>
+          <SearchButton onClick={handleSearch}>
+            <ImSearch size="16" />
+          </SearchButton>
         </SearchBox>
       </Header>
       {loading ? <Loading /> : null}
@@ -93,28 +96,35 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
 `;
 
 const SearchBox = styled.div`
-  width: 20%;
+  width: 50%;
   display: flex;
-  background-color: #c4c4c4;
-  border-radius: 2px;
+  background-color: #efefef;
+  border-radius: 30px;
+  align-items: center;
+  padding: 0.3rem 0.8rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 `;
 
 const SearchInput = styled.input`
-  width: 80%;
-  padding: 0.5em;
+  width: 92%;
+  font-size: 1.1rem;
+  margin: 1rem;
 `;
 
 const SearchButton = styled.button`
-  width: 20%;
+  width: 8%;
   background-color: #000;
   color: white;
   font-weight: bold;
-  padding: 0 1em;
+  padding: 1rem;
+  border-radius: 50%;
 
   :hover {
+    background-color: rgba(0, 0, 0, 0.75);
     cursor: pointer;
   }
 `;
