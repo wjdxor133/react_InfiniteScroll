@@ -5,6 +5,9 @@
 - 인원 : 본인 1명
 - 프로젝트 기간 : 2020.09.15 ~ 2020.09.18
 
+## Demo
+![InfinitScroll](https://user-images.githubusercontent.com/47416686/93570343-d5df1400-f9cd-11ea-8a1c-214c008fda5c.gif)
+
 ## 목표
 - 라이브러리 없이 Styled-component와 react hooks로만 구현하기
 - 최대한 자연스럽게 구현하기
