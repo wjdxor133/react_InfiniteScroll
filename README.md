@@ -6,7 +6,7 @@
 - 프로젝트 기간 : 2020.09.15 ~ 2020.09.18
 
 ## Demo
-![InfiniteScroll](https://user-images.githubusercontent.com/47416686/93573153-c06be900-f9d1-11ea-8aee-cc29fdffaf1f.gif)
+![InfiniteScroll](https://user-images.githubusercontent.com/47416686/93573464-1f316280-f9d2-11ea-8316-00da81781bc8.gif)
 
 ## 목표
 - 라이브러리 없이 Styled-component와 react hooks로만 구현하기
